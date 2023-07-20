@@ -13,7 +13,25 @@ nuevoContador()     // 2
 const otroContador = counter()
 otroContador()      // 1
 otroContador()      // 2 */
-function counter() {}
+function counter() {
+  let count = 0; // Inicializamos el contador en 0.
+
+  // Devolvemos una función que actuará como contador.
+  return function () {
+    count++; // Incrementamos el contador en cada invocación.
+    return count; // Retornamos el valor actual del contador.
+  };
+}
+
+// Creamos dos instancias de contador.
+const nuevoContador = counter();
+const otroContador = counter();
+
+console.log(nuevoContador()); // Output: 1
+console.log(nuevoContador()); // Output: 2
+
+console.log(otroContador()); // Output: 1
+console.log(otroContador()); // Output: 2
 
 /* Ejercicio 2
 Tu tarea aquí es lograr, mediante un closure, que cacheFunction actúe como una memoria caché para el callback 
@@ -58,8 +76,11 @@ function getNombre() {
   Usando el método bind() guardar, en las dos variables declaradas a continuación, dos funciones que actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
 */
 
-let getNombreInstructor = getNombre.bind();
-let getNombreAlumno = getNombre.bind();
+var getNombreInstructor = getNombre.bind(instructor);
+var getNombreAlumno = getNombre.bind(alumno);
+
+console.log(getNombreInstructor()); 
+console.log(getNombreAlumno());     
 
 /*
   Ejercicio 4
@@ -70,9 +91,13 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
     return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos = crearCadena.bind();
-let textoGuiones = crearCadena.bind();
-let textoUnderscore = crearCadena.bind();
+let textoAsteriscos = crearCadena.bind(null, "*", "*");
+let textoGuiones = crearCadena.bind(null, "-", "-");
+let textoUnderscore = crearCadena.bind(null, "_", "_");
+
+console.log(textoAsteriscos("Hola"));       
+console.log(textoGuiones("Mundo"));         
+console.log(textoUnderscore("JavaScript"));
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
