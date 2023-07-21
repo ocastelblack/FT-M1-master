@@ -42,41 +42,20 @@ Pueden utilizar class o función constructora.
 */
 
 function Queue() {
-  this.elements = []; // Array para almacenar los elementos de la queue
-
-  // Método para agregar un valor al final de la queue (enqueue)
-  this.enqueue = function (value) {
-    this.elements.push(value);
-  };
-
-  // Método para remover el primer valor de la queue (dequeue)
-  this.dequeue = function () {
-    return this.elements.shift();
-  };
-
-  // Método para obtener el tamaño de la queue
-  this.size = function () {
-    return this.elements.length;
-  };
+  this.queue = [];
 }
 
-// Crear una nueva queue
-const myQueue = new Queue();
+Queue.prototype.enqueue = function (value){
+  this.queue.push(value);
+}
 
-// Agregar elementos a la queue
-myQueue.enqueue(10);
-myQueue.enqueue(20);
-myQueue.enqueue(30);
+Queue.prototype.dequeue = function (){
+  if(this.queue) return this.queue.shift();
+}
 
-// Obtener el tamaño de la queue
-console.log(myQueue.size()); // Output: 3
-
-// Remover elementos de la queue
-console.log(myQueue.dequeue()); // Output: 10
-console.log(myQueue.dequeue()); // Output: 20
-
-// Obtener el tamaño actualizado de la queue
-console.log(myQueue.size()); // Output: 1
+Queue.prototype.size = function (){
+  return this.queue.length;
+}
 
 /*⚠️ No modificar nada debajo de esta línea ⚠️*/
 module.exports = {
